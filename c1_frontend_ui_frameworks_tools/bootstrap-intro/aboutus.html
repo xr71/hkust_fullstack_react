@@ -17,6 +17,36 @@
 
 <body>
 
+
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- this button needs to toglge the links below  -->
+            <a href="" class="navbar-brand">Ristorante Con Fusion</a>
+            <!-- this div section is being targeted by the button toggler  -->
+            <!-- make sure to use the data target above with the same ID here  -->
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./aboutus.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <header class="jumbotron">
         <div class="container">
             <div class="row row-header">
@@ -32,6 +62,10 @@
 
     <div class="container">
         <div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                <li class="breadcrumb-item active">About Us</li>
+            </ol>
             <div class="col-12">
                <h3>About Us</h3>
                <hr>
@@ -113,5 +147,6 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
+
 
 </html>
