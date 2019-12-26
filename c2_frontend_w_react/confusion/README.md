@@ -1,3 +1,13 @@
+# Coursera HKUST React Specialization (Full Stack)
+
+Components Used:  
+```
+yarn add bootstrap@4.0.0
+yarn add reactstrap@5.0.0
+yarn add react-popper@0.9.2
+```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
