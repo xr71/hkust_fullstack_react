@@ -46,8 +46,8 @@
                 </ul>
 
                 <span class="navbar-text">
-                    <a href="" data-target='#loginModal' data-toggle='modal'>
-                       <span class='fa fa-sign-in'></span> 
+                    <a id="signIn">
+                       <span  class='fa fa-sign-in'></span> 
                        Login
                     </a>
                 </span>
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="form-row">
-                            <button data-dismiss='modal' class='btn btn-seconday btn-sm ml-auto' type='button'>Cancel</button>
+                            <button data-dismiss='modal' class='btn btn-secondary btn-sm ml-auto' type='button'>Cancel</button>
                             <button type='submit' class='btn btn-primary btn-sm ml-1'>Sign in</button>
                         </div>
                     </form>
@@ -206,14 +206,10 @@
                         </div>
     
                         <div class="col-6 align-self-center">
-                            <a data-target='#reserveTableModal' 
-                               data-toggle='modal'
+                            <a id='reserveButton'
                                role="button"
                                class="btn btn-sm btn-block btn-warning"
-                               data-toggle="tooltip"
-                               data-html="true" 
                                title="Or Call us at <br><strong>+852 12345678</strong></br>" 
-                               data-placement="bottom"
                             >Reserve Table</a>
                         </div>
                     </div>
@@ -388,7 +384,8 @@
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    <script src="js/scripts.js"></script>
+    
     <script>
         // $(document).ready(
         //     function() {
@@ -410,6 +407,14 @@
                         $('#carouselButton').children('span').removeClass('fa-play');
                         $('#carouselButton').children('span').addClass('fa-pause');
                     }
+                })
+
+                $('#signIn').click(() => {
+                    $('#loginModal').modal();
+                })
+
+                $('#reserveButton').click(() => {
+                    $('#reserveTableModal').modal();
                 })
             }
         )

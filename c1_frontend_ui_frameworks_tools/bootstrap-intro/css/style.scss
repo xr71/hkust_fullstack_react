@@ -55,16 +55,41 @@ body{
 }
 
 .carousel {
-    background: $background-dark;
+    background:$background-dark;
+
+    .carousel-item {
+        height: $carousel-item-height;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-height: 300px;
+        }
+    }
 }
 
-.carousel-item {
-    height: $carousel-item-height;
-}
-
-.carousel-item img {
+#carouselButton {
+    right:0px;
     position: absolute;
-    top: 0;
-    left: 0;
-    min-height: $carousel-item-height;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.modal {
+    .modal-header {
+        background-color: $background-dark;
+        color: floralwhite;
+
+        button {
+            color: floralwhite;
+        }
+    }
+
+    .modal-body {
+        background-color: $background-pale;
+
+        button {
+            color: floralwhite;
+        }
+    }
 }
