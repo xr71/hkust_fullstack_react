@@ -41,26 +41,39 @@ promoRouter.route('/')
     });
 
 
-// promoRouter.route('/:dishId')
-//     .all((req, res, next) => {
-//         res.statusCode = 200;
-//         res.setHeader('Content-Type', 'text/plain');
-
-//         next();
-//     })
-//     .get((req, res, next) => {
-//         res.end('Will send details of the promotion: ' + req.params.dishId + ' to you!');
-//     })
-//     .post((req, res, next) => {
-//         res.statusCode = 403;
-//         res.end('POST operation no supported on /promotions/' + req.params.dishId);
-//     })
-//     .put((req, res, next) => {
-//         res.write('Updating the promotion: ' + req.params.dishId + '\n');
-//         res.end('Will update the promotion: ' + req.body.name + ' with details: ' + req.body.description);
-//     })
-//     .delete((req, res, next) => {
-//         res.end('Deleting promotion: ' + req.params.dishId);
-//     });
+promoRouter.route('/:promoId')
+    .get((req,res,next) => {
+        promos.findById(req.params.promoId)
+            .then((promo) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(promo);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    })
+    .post((req, res, next) => {
+        res.statusCode = 403;
+        res.end('POST operation not supported on /promos/'+ req.params.promoId);
+    })
+    .put((req, res, next) => {
+        promos.findByIdAndUpdate(req.params.promoId, {
+            $set: req.body
+        }, { new: true })
+            .then((promo) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(promo);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    })
+    .delete((req, res, next) => {
+        promos.findByIdAndRemove(req.params.promoId)
+            .then((resp) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(resp);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    });
 
 module.exports = promoRouter;
