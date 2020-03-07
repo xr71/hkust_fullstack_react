@@ -12,7 +12,7 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 
 const mongoose = require('mongoose');
-const Dishes = require('./models/dishes');
+// const Dishes = require('./models/dishes');
 
 const url = "mongodb://192.168.99.100:27017/conFusion"
 const conn = mongoose.connect(url);
