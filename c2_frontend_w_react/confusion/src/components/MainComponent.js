@@ -5,6 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
+import DishDetail from './DishDetailComponent';
 
 import Home from './HomeComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
@@ -52,6 +53,16 @@ class Main extends Component {
       )
     }
 
+
+        const DishWithId = ({match}) => {
+            return(
+                <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+                comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+           
+            );
+            
+        };
+
     return (
       <div className="App">
         <Header />
@@ -65,6 +76,7 @@ class Main extends Component {
             <Switch>
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
+              <Route path='/menu/:dishId' component={DishWithId} />
               <Route exact path='/contactus' component={Contact} />
               <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Redirect to="/home" />
