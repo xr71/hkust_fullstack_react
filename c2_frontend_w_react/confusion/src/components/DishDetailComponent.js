@@ -1,8 +1,26 @@
 import React from 'react';
 import { Component } from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText, Media } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, 
+    CardText, Media, Button 
+} from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { LocalForm, Control, Errors } from 'react-redux-form';
+
+
+class CommentForm extends Component {
+    render() {
+        return(
+            <React.Fragment>
+                <Button outline 
+                    onClick={this.toggleModal}>
+                        <i className="fa fa-pencil fa-lg"> </i>  
+                    Submit comment
+                </Button>
+            </React.Fragment>
+        )
+    }
+}
 
 function RenderDish({ dish }) {
   if (dish != null) {
@@ -50,6 +68,8 @@ function RenderComments({ comments }) {
         <ul className='list-unstyled'>
           {commentsList}
         </ul>
+
+        <CommentForm />
       </div>
     )
   } else {
@@ -80,6 +100,7 @@ const DishDetail = (props) => {
                     <RenderDish dish={props.dish} />
                     <RenderComments comments={props.comments} />
             </div>
+
         </div>
     </div>
   );
