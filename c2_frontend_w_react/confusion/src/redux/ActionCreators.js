@@ -27,3 +27,5 @@ export const dishFailed = (errmsg) => ({
   type: ActionTypes.DISHES_FAILED,
   payload: errmsg,
 });
+
+export const addDishes = () => ({});
