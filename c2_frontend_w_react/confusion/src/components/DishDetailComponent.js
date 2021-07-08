@@ -216,9 +216,17 @@ const DishDetail = (props) => {
         </div>
       </div>
     );
-  } else {
+  } else if (props.errMess) {
+        return (
+            <div className="container">
+              <div className="row">
+                <h4>{props.errMess}</h4>
+              </div>
+            </div>
+        )
+    } else {
     return (
-      props.dish != null && (
+      props.dish && (
         <div className='container'>
           <div className='row'>
             <Breadcrumb>

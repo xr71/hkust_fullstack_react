@@ -9,12 +9,12 @@ import {
 } from "reactstrap";
 import { Loading } from "./LoadingComponent";
 
-function RenderCard({ item, isLoading, errmsg }) {
+function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
     return <Loading />;
-  } else if (errmsg) {
-    return <h4>ERROR</h4>;
-  } else
+  } else if (errMess) {
+      return <h4>{errMess}</h4>;
+  } else {
     return (
       <Card>
         <CardImg src={item.image} alt={item.name} />
@@ -27,6 +27,7 @@ function RenderCard({ item, isLoading, errmsg }) {
         </CardBody>
       </Card>
     );
+  }
 }
 
 function Home(props) {
@@ -37,7 +38,7 @@ function Home(props) {
           <RenderCard
             item={props.dish}
             isLoading={props.dishesLoading}
-            errmsg={props.dishesErrMsg}
+            errMess={props.dishesErrMsg}
           />
         </div>
         <div className='col-12 col-md m-1'>
