@@ -9,6 +9,7 @@ import Home from "./HomeComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addComment, fetchDishes } from "../redux/ActionCreators";
+import { actions } from 'react-redux-form';
 
 
 const mapStoreToProps = (state) => {
@@ -26,14 +27,14 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDishes: () => {
     dispatch(fetchDishes());
   },
+  resetFeedbackForm: () => {
+      dispatch(actions.reset('feedback'))
+  }
 });
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchDishes();
   }
 
@@ -45,7 +46,7 @@ class Main extends Component {
         <Home
           dish={dishes.dishes.filter((dish) => dish.featured)[0]}
           dishesLoading={dishes.isLoading}
-          dishesErrMsg={dishes.errmsg}
+          dishesErrMess={dishes.errMess}
           promotion={promotions.filter((promo) => promo.featured)[0]}
           leader={leaders.filter((leader) => leader.featured)[0]}
         />
@@ -61,7 +62,7 @@ class Main extends Component {
             )[0]
           }
           isLoading={this.props.dishes.isLoading}
-          errmsg={this.props.dishes.errmsg}
+          errMess={this.props.dishes.errMess}
           comments={this.props.comments.filter(
             (comment) => comment.dishId === parseInt(match.params.dishId, 10)
           )}
@@ -82,7 +83,7 @@ class Main extends Component {
             component={() => <Menu dishes={this.props.dishes} />}
           />
           <Route path='/menu/:dishId' component={DishWithId} />
-          <Route exact path='/contactus' component={Contact} />
+          <Route exact path='/contactus' component={ () => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/> } />
           <Route
             exact
             path='/aboutus'

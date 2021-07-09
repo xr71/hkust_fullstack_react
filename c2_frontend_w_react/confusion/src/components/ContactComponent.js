@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Col, Input,
+import { FormGroup, Label, Col, Input,
     Breadcrumb, BreadcrumbItem, Button
  } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 
 
 const required = (val) => val && val.length;
@@ -60,14 +60,11 @@ class Contact extends Component {
         const reg = /^\d+$/;
         if (this.state.touched.telnum && !reg.test(telnum))
             errors.telnum = 'Tel. Number should contain only numbers';
-            
         if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1) 
             errors.email = 'Email should contain a @';
 
         return errors;
     }
-    
-    
     handleBlur = (field) => (evt) => {
         this.setState({
           touched: { ...this.state.touched, [field]: true },
@@ -78,23 +75,20 @@ class Contact extends Component {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
         // event.preventDefault();
+        this.props.resetFeedbackForm();
     }
-        
 
 //    handleInputChange(event) {
 //        const target = event.target;
 //        const value = target.type === 'checkbox' ? target.checked : target.value;
 //        const name = target.name;
-//    
 //        this.setState({
 //          [name]: value
 //        });
 //    }
 
     render() {
-
 //        const errors = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
-
         return(
             <div className="container">
                 <div className="row row-content">
@@ -118,7 +112,7 @@ class Contact extends Component {
                     <div className="col-12 col-sm-11 offset-sm-1">
                         <div className="btn-group" role="group">
                             <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
-                            <a role="button" className="btn btn-info" href="#"><i className="fa fa-skype"></i> Skype</a>
+                            <a role="button" className="btn btn-info" href="skype.com"><i className="fa fa-skype"></i> Skype</a>
                             <a role="button" className="btn btn-success" href="mailto:confusion@food.net"><i className="fa fa-envelope-o"></i> Email</a>
                         </div>
                     </div>
@@ -130,7 +124,7 @@ class Contact extends Component {
 
                     </div>
                     <div className="col-12 col-md-9">
-                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
 
                         <FormGroup row>
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
@@ -253,7 +247,7 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="message" md={2}>Your Feedback</Label>
                                 <Col md={10}>
-                                    <Control.textarea model=".message" 
+                                    <Control.textarea model=".message"
                                         id="message" name="message"
                                         rows="12">
                                     </Control.textarea>
@@ -266,7 +260,7 @@ class Contact extends Component {
                                     <Button type="submit" color="primary" >Send Feedback</Button>
                                 </Col>
                             </FormGroup>
-                        </LocalForm>
+                        </Form>
                     </div>
                 </div>
             </div>

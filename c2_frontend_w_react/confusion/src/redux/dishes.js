@@ -1,10 +1,9 @@
-import { DISHES } from "../shared/dishes";
 import * as ActionTypes from "./ActionTypes";
 
 export const Dishes = (
   state = {
     isLoading: true,
-    errmsg: null,
+    errMess: null,
     dishes: [],
   },
   action
@@ -14,18 +13,18 @@ export const Dishes = (
       return {
         ...state,
         isLoading: false,
-        errmsg: null,
+        errMess: null,
         dishes: action.payload,
       };
 
     case ActionTypes.DISHES_LOADING:
-      return { ...state, isLoading: true, errmsg: null, dishes: [] };
+      return { ...state, isLoading: true, errMess: null, dishes: [] };
 
     case ActionTypes.DISHES_FAILED:
       return {
         ...state,
         isloaading: false,
-        errmsg: action.payload,
+        errMess: action.payload,
         dishes: [],
       };
 
