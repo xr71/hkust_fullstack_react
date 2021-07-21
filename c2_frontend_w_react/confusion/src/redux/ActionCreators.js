@@ -34,6 +34,7 @@ export const addDishes = (dishes) => ({
   payload: dishes,
 });
 
+// comments section
 export const fetchComments = () => (dispatch) => {
     return fetch(baseUrl + 'comments')
         .then(response => response.json())
@@ -43,4 +44,9 @@ export const fetchComments = () => (dispatch) => {
 export const addComments = (comments) => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments,
+});
+
+export const commentsFailed = (errmsg) => ({
+    type: ActionTypes.COMMENTS_FAILED,
+    payload: errmsg,
 });
